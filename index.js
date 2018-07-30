@@ -1,36 +1,32 @@
-const drivers = ['Sally', 'Bob', 'Freddy', 'Claudia'];
+const logDriverNames = function (drivers){
+  drivers.forEach(function(drivers){
+    console.log(drivers.name)
+  })
+}
 
-const returnFirstTwoDrivers= function (array){ 
- return array.slice(0,2);
+const logDriversByHometown = function (drivers, location){
+    drivers.forEach(function(driver){ 
+      if (driver.hometown === location){console.log(driver.name)}
+      
+    })
+  }
 
+const driversByRevenue = function (drivers) {
+  return drivers.slice().sort(function (driverOne, driverTwo) {
+    return driverOne.revenue - driverTwo.revenue;
+  });
 };
 
-const returnLastTwoDrivers = function (array) {
-  return array.slice(2,4);
+const driversByName = function (drivers) {
+  return drivers.slice().sort(function (driverOne, driverTwo) {
+    return driverOne.name.localeCompare(driverTwo.name);
+  });
 };
 
-let selectingDrivers = [ (returnFirstTwoDrivers),(returnLastTwoDrivers) ];
-selectingDrivers[1];
 
 
-let createFareMultiplier = function (value1) {
-  return function () {
-    return value1 * value1;
-  };
-};
+const totalRevenue = function (drivers){
+  return drivers.reduce(function(total, current){return current.revenue + total;},0)
+}
 
-const fareDoubler =function (value) {
-    return value * 2;
-  };
-  
-const fareTripler= function (value) {
-    return value * 3;
-  };
-  
-  
-  const selectDifferentDrivers = function (array, returnwichDrivers) {
-  return returnwichDrivers(array);
-};
-
-selectDifferentDrivers(drivers , returnFirstTwoDrivers);
-selectDifferentDrivers(drivers , returnLastTwoDrivers);
+const averageRevenue = function (drivers){return totalRevenue(drivers)/drivers.length}
